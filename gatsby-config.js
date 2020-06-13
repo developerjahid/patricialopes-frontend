@@ -1,3 +1,8 @@
+//dot env to hide keys
+require('dotenv').config({
+    path: `.env`,
+})
+
 const resolveConfig = require('tailwindcss/resolveConfig')
 const tailwindConfig = require('./tailwind.config.js')
 
@@ -11,6 +16,13 @@ module.exports = {
     },
     plugins: [
         `gatsby-plugin-eslint`,
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `images`,
+                path: `${__dirname}/src/images`,
+            },
+        },
         `gatsby-plugin-react-helmet`,
         {
             resolve: `gatsby-plugin-manifest`,
@@ -24,6 +36,9 @@ module.exports = {
                 icon: `src/images/favicon.png`,
             },
         },
+        `gatsby-transformer-sharp`,
+        `gatsby-plugin-sharp`,
+
         {
             resolve: `gatsby-plugin-postcss`,
             options: {
@@ -36,6 +51,21 @@ module.exports = {
                 ],
             },
         },
+        {
+            resolve: 'gatsby-source-sanity',
+            options: {
+                projectId: process.env.PROJECT_ID,
+                dataset: process.env.DATASET,
+                // a token with read permissions is required
+                // if you have a private dataset
+                token: process.env.SANITY_TOKEN,
+
+                // If the Sanity GraphQL API was deployed using `--tag <name>`,
+                // use `graphqlTag` to specify the tag name. Defaults to `default`.
+                graphqlTag: 'default',
+            },
+        },
+        `gatsby-source-sanity-transform-images`,
         `gatsby-plugin-offline`,
     ],
 }

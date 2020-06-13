@@ -18,8 +18,8 @@ function Header() {
                             title: `Cinematography`,
                         },
                         {
-                            route: `/photography`,
-                            title: `Photography`,
+                            route: `/showreel`,
+                            title: `Showreel`,
                         },
                         {
                             route: `/about`,
@@ -39,7 +39,7 @@ function Header() {
                         </Link>
                     ))}
                 </nav>
-                <Link className='sm:pt-3 sm:pl-3' to='/'>
+                <Link className='sm:pt-3 sm:pl-3 md:pt-0 md:pl-0' to='/'>
                     <img src={Logo} alt='' />
                 </Link>
 
