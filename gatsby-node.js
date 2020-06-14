@@ -4,7 +4,7 @@ const createProjectPages = async (graphql, actions, reporter) => {
         {
             allSanityCinematography {
                 nodes {
-                    _id
+                    id
                     slug {
                         current
                     }
@@ -21,7 +21,7 @@ const createProjectPages = async (graphql, actions, reporter) => {
         createPage({
             path,
             component: require.resolve('./src/templates/cinamato.js'),
-            context: { id: node._id },
+            context: { id: node.id },
         })
     })
 }

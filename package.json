@@ -4,6 +4,7 @@
   "version": "4.0.0",
   "author": "Developer Jahid <contact@developerjahid.com>",
   "dependencies": {
+    "@raae/gatsby-remark-oembed": "^0.1.1",
     "dotenv": "^8.2.0",
     "gatsby": "2.23.3",
     "gatsby-plugin-manifest": "2.4.11",
@@ -14,6 +15,7 @@
     "gatsby-source-filesystem": "^2.3.11",
     "gatsby-source-sanity": "^5.0.6",
     "gatsby-source-sanity-transform-images": "0.0.7",
+    "gatsby-transformer-remark": "^2.8.15",
     "gatsby-transformer-sharp": "^2.5.5",
     "prop-types": "15.7.2",
     "react": "16.13.1",

@@ -11,7 +11,16 @@ const Showreel = () => (
         <section
             id='showreel'
             className='container w-full max-w-6xl mx-auto text-center'
-        ></section>
+        >
+            <iframe
+                title='vimeo-player'
+                src='https://player.vimeo.com/video/161841346'
+                width='640'
+                height='360'
+                frameBorder='0'
+                allowFullscreen
+            ></iframe>
+        </section>
     </Layout>
 )
 
