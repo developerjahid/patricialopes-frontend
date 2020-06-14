@@ -15,7 +15,13 @@ module.exports = {
         author: `@developerjahid`,
     },
     plugins: [
-        `gatsby-plugin-eslint`,
+        {
+            resolve: 'gatsby-source-sanity',
+            options: {
+                projectId: '7nedemsk',
+                dataset: 'production',
+            },
+        },
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -51,13 +57,7 @@ module.exports = {
                 ],
             },
         },
-        {
-            resolve: 'gatsby-source-sanity',
-            options: {
-                projectId: process.env.PROJECT_ID,
-                dataset: process.env.DATASET,
-            },
-        },
+
         `gatsby-source-sanity-transform-images`,
         `gatsby-plugin-offline`,
     ],

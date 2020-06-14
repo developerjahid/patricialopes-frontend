@@ -17,7 +17,7 @@ const createProjectPages = async (graphql, actions, reporter) => {
     }
     const projects = getProjectsResult.data.allSanityCinematography.nodes || []
     projects.forEach((node) => {
-        const path = `/project/${node.slug.current}`
+        const path = `cinematography/${node.slug.current}`
         createPage({
             path,
             component: require.resolve('./src/templates/cinamato.js'),
