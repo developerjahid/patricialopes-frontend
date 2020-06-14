@@ -1,10 +1,13 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import Layout from '../components/layout'
 
 const Test = ({ data }) => (
-    <article>
-        <h2>{data.allSanityCinematography.nodes.title}</h2>
-    </article>
+    <Layout>
+        <article>
+            <h2>{data.allSanityCinematography.nodes.title}</h2>
+        </article>
+    </Layout>
 )
 
 export default Test
