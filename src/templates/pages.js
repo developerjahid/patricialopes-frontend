@@ -10,6 +10,7 @@ export const query = graphql`
             content {
                 ... on SanitySlideshow {
                     _key
+                    _type
                     images {
                         alt
                         asset {
@@ -36,9 +37,11 @@ function PagesTemplate({ data }) {
                 title='Home'
             />
             <section id='pages-templete' className='bg-white py-8'>
-                {data.sanityPage.content.map((item) =>
-                    item.images.map((image) => <h2>{image.alt}</h2>)
-                )}
+                {data.sanityPage.content.map((item) => (
+                    <div>
+                        <h2>{item._type}</h2>
+                    </div>
+                ))}
             </section>
         </Layout>
     )
