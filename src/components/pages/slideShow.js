@@ -1,47 +1,25 @@
 import React from 'react'
-import { graphql, StaticQuery } from 'gatsby'
+import { Carousel } from 'react-responsive-carousel'
 
-export const slideQuery = graphql`
-    query pageSlideTempleteQuery($id: String!) {
-        sanityPage(id: { eq: $id }) {
-            title
-            id
-            content {
-                ... on SanitySlideshow {
-                    _key
-                    _type
-                    images {
-                        alt
-                        asset {
-                            localFile {
-                                childImageSharp {
-                                    fluid {
-                                        src
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-`
-
-function Slideshow() {
+function Slideshow(props) {
     return (
-        <StaticQuery
-            query={slideQuery}
-            render={(data) => {
-                return (
-                    <section id='pages-templete' className='bg-white py-8'>
-                        {data.sanityPage.content.map((image) => (
-                            <h1>{image._key}</h1>
-                        ))}
-                    </section>
-                )
-            }}
-        />
+        <div className='container max-w-5xl mx-auto flex items-center flex-wrap rounded'>
+            <Carousel
+                infiniteLoop={true}
+                autoPlay={true}
+                stopOnHover={true}
+                swipeable={true}
+                emulateTouch={true}
+                showThumbs={false}
+                showArrows={true}
+                showStatus={false}
+                showIndicators={false}
+            >
+                {props.images.map((image) => (
+                    <img src={image.asset.url} alt={image.alt} />
+                ))}
+            </Carousel>
+        </div>
     )
 }
 

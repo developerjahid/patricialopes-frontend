@@ -23,13 +23,7 @@ export const query = graphql`
             }
             fragments {
                 asset {
-                    localFile {
-                        childImageSharp {
-                            fluid {
-                                src
-                            }
-                        }
-                    }
+                    url
                 }
                 alt
             }
@@ -63,12 +57,7 @@ const ProjectTemplate = ({ data }) => {
                     </Link>
 
                     {images.map((image) => (
-                        <img
-                            src={
-                                image.asset.localFile.childImageSharp.fluid.src
-                            }
-                            alt={image.alt}
-                        />
+                        <img src={image.asset.url} alt={image.alt} />
                     ))}
                     <div>
                         <span>{data.sanityCinematography.title}</span>

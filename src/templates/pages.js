@@ -1,48 +1,56 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import Slideshow from '../components/pages/slideshow'
 import SEO from '../components/seo'
 import Layout from '../components/layout'
+import Text from '../components/pages/text'
+import TextImage from '../components/pages/textImage'
+import Gird from '../components/pages/gird'
+import Video from '../components/pages/video'
 
 export const query = graphql`
-    query pageTempleteQuery($id: String!) {
-        sanityPage(id: { eq: $id }) {
+    query PageTemplateQuery($id: String!) {
+        route: sanityPage(id: { eq: $id }) {
             id
-            content {
-                ... on SanitySlideshow {
-                    _key
-                    _type
-                    images {
-                        alt
-                        asset {
-                            localFile {
-                                childImageSharp {
-                                    fluid {
-                                        src
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            title
+            _rawContent(resolveReferences: { maxDepth: 10 })
         }
     }
 `
 
-function PagesTemplate({ data }) {
+const PagesTemplate = ({ data }) => {
+    const page = data.sanityPage || data.route
+    const content = (page._rawContent || [])
+        .filter((c) => !c.disabled)
+        .map((c, i) => {
+            let el = null
+            switch (c._type) {
+                case 'slideshow':
+                    el = <Slideshow key={c._key} {...c} />
+                    break
+                case 'textContent':
+                    el = <Text key={c._key} {...c} />
+                    break
+                case 'textWithImage':
+                    el = <TextImage key={c._key} {...c} />
+                    break
+                case 'gallery':
+                    el = <Gird key={c._key} {...c} />
+                    break
+                case 'videoEmbed':
+                    el = <Video key={c._key} {...c} />
+                    break
+
+                default:
+                    el = null
+            }
+            return el
+        })
+
     return (
         <Layout>
-            <SEO
-                keywords={[`gatsby`, `tailwind`, `react`, `tailwindcss`]}
-                title='Home'
-            />
-            <section id='pages-templete' className='bg-white py-8'>
-                {data.sanityPage.content.map((item) => (
-                    <div>
-                        <h2>{item._type}</h2>
-                    </div>
-                ))}
-            </section>
+            <SEO title='test' />
+            <div className='m-10'>{content}</div>
         </Layout>
     )
 }

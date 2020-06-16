@@ -18,10 +18,7 @@ const Cinematography = ({ data }) => {
                     {items.map(({ node: item }) => (
                         <Cineitem
                             title={item.title}
-                            featuredImage={
-                                item.featuredImage.asset.localFile
-                                    .childImageSharp.fluid.src
-                            }
+                            featuredImage={item.featuredImage.asset.url}
                             altImage={item.featuredImage.alt}
                             category={item.category}
                             url={item.slug.current}
@@ -44,14 +41,9 @@ export const query = graphql`
                     }
                     featuredImage {
                         alt
+
                         asset {
-                            localFile {
-                                childImageSharp {
-                                    fluid {
-                                        src
-                                    }
-                                }
-                            }
+                            url
                         }
                     }
                     category
