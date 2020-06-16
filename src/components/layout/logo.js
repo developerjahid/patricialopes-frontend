@@ -12,7 +12,7 @@ function Logo() {
                             asset {
                                 localFile {
                                     childImageSharp {
-                                        fluid {
+                                        fluid(maxWidth: 200) {
                                             src
                                         }
                                     }
@@ -27,7 +27,7 @@ function Logo() {
                 return (
                     <Link className='sm:pt-3 sm:pl-3 md:pt-0 md:pl-0' to='/'>
                         <img
-                            src={Logo.asset.loclFile.childImageSharp.fluid.src}
+                            src={logo.asset.localFile.childImageSharp.fluid.src}
                             alt={logo.alt}
                         />
                     </Link>
