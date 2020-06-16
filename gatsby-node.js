@@ -10,17 +10,37 @@ const createProjectPages = async (graphql, actions, reporter) => {
                     }
                 }
             }
+            allSanityPage {
+                nodes {
+                    id
+                    slug {
+                        current
+                    }
+                }
+            }
         }
     `)
     if (getProjectsResult.errors) {
         throw getProjectsResult.errors
     }
-    const projects = getProjectsResult.data.allSanityCinematography.nodes || []
-    projects.forEach((node) => {
+    //cinematography page
+    const projectsCinematography =
+        getProjectsResult.data.allSanityCinematography.nodes || []
+    projectsCinematography.forEach((node) => {
         const path = `cinematography/${node.slug.current}`
         createPage({
             path,
             component: require.resolve('./src/templates/cinamato.js'),
+            context: { id: node.id },
+        })
+    })
+    //dynamic page all page
+    const projectsPages = getProjectsResult.data.allSanityPage.nodes || []
+    projectsPages.forEach((node) => {
+        const path = `${node.slug.current}`
+        createPage({
+            path,
+            component: require.resolve('./src/templates/pages.js'),
             context: { id: node.id },
         })
     })

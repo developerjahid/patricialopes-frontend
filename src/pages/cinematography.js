@@ -34,7 +34,7 @@ const Cinematography = ({ data }) => {
 }
 
 export const query = graphql`
-    query allCine {
+    query pageQuery {
         allSanityCinematography {
             edges {
                 node {
