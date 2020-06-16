@@ -5,7 +5,7 @@ import '../css/app.css'
 
 import Sli from '../images/sli.jpg'
 
-import Layout from '../components/layout'
+import Layout from '../components/layout/layout'
 import SEO from '../components/seo'
 
 const Index = () => (
