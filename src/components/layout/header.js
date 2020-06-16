@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, StaticQuery } from 'gatsby'
-import Logo from '../images/logo.png'
+import Logo from './logo'
 
 function Header() {
     const [isExpanded, toggleExpansion] = useState(false)
@@ -36,12 +36,7 @@ function Header() {
                                     </Link>
                                 ))}
                             </nav>
-                            <Link
-                                className='sm:pt-3 sm:pl-3 md:pt-0 md:pl-0'
-                                to='/'
-                            >
-                                <img src={Logo} alt='' />
-                            </Link>
+                            <Logo />
 
                             <div className='sm:pt-3 sm:pr-3'>
                                 <button
