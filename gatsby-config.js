@@ -12,7 +12,12 @@ module.exports = {
     siteMetadata: {
         title: `Patricia Lopes`,
         description: `Gatsby starter styled with Tailwind by developjahid //seo description here...`,
+        keywords: `gatsby, gatsbyjs, etc`,
+        synonyms: ['seo', 'test', 'man'],
+        image: '/logo.png',
         author: `@developerjahid`,
+        url: `https://www.patricialopes.be`,
+        siteUrl: `https://www.example.com`,
     },
     plugins: [
         {
@@ -57,7 +62,14 @@ module.exports = {
                 ],
             },
         },
-
+        {
+            resolve: `gatsby-plugin-canonical-urls`,
+            options: {
+                siteUrl: `http://localhost:8000`,
+            },
+        },
+        `gatsby-plugin-sitemap`,
+        `gatsby-plugin-robots-txt`,
         `gatsby-source-sanity-transform-images`,
         `gatsby-plugin-offline`,
     ],

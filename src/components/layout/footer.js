@@ -55,7 +55,7 @@ function Footer() {
                                     © 2020. By {` `}
                                     <Link
                                         className='font-bold no-underline'
-                                        href='/'
+                                        to='/'
                                         target='_blank'
                                         rel='noopener noreferrer'
                                     >

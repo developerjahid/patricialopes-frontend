@@ -1,89 +1,72 @@
-import { useStaticQuery, graphql } from "gatsby";
-import PropTypes from "prop-types";
-import React from "react";
-import { Helmet } from "react-helmet";
+import React from 'react'
+import { Helmet } from 'react-helmet'
+import { StaticQuery, graphql } from 'gatsby'
 
-function SEO({ description, lang, meta, keywords, title }) {
-  const { site } = useStaticQuery(graphql`
-    query DefaultSEOQuery {
-      site {
-        siteMetadata {
-          title
-          description
-          author
-        }
-      }
-    }
-  `);
+const SEO = ({ title, description, keywords, image, synonyms }) => (
+    <StaticQuery
+        query={query}
+        render={({
+            site: {
+                siteMetadata: {
+                    defaultDescription,
+                    defaultImage,
+                    url,
+                    defaultKeywords,
+                    defaultSynonyms,
+                    defaultTitle,
+                },
+            },
+        }) => {
+            //synonyms
+            const syno = synonyms || defaultSynonyms
+            const synkey = syno.map((syn) => syn)
 
-  const metaDescription = description || site.siteMetadata.description;
+            const seo = {
+                defaultTitle: defaultTitle,
+                description: description || defaultDescription,
+                image: `${image ? image : image || url + defaultImage}`,
+                keywords: `${
+                    keywords
+                        ? keywords + ',' + synkey
+                        : keywords + ',' + synkey ||
+                          defaultKeywords + defaultSynonyms
+                }`,
+            }
 
-  return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ]
-        .concat(
-          keywords.length > 0
-            ? {
-                name: `keywords`,
-                content: keywords.join(`, `),
-              }
-            : []
-        )
-        .concat(meta)}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+            return (
+                <Helmet title={title} titleTemplate={`%s | ${defaultTitle}`}>
+                    <html lang='en' />
+                    <meta name='image' content={seo.image} />
+                    <meta name='description' content={seo.description} />
+                    <meta name='keywords' content={seo.keywords} />
+                    <meta property='og:title' content={title} />
+                    <meta property='og:description' content={seo.description} />
+                    <meta property='og:image' content={seo.image} />
+                    <meta name='twitter:title' content={title} />
+                    <meta
+                        name='twitter:description'
+                        content={seo.description}
+                    />
+                    <meta name='twitter:image' content={seo.image} />
+                </Helmet>
+            )
+        }}
     />
-  );
-}
+)
 
-SEO.defaultProps = {
-  lang: `en`,
-  keywords: [],
-  meta: [],
-};
+export default SEO
 
-SEO.propTypes = {
-  description: PropTypes.string,
-  keywords: PropTypes.arrayOf(PropTypes.string),
-  lang: PropTypes.string,
-  meta: PropTypes.array,
-  title: PropTypes.string.isRequired,
-};
-
-export default SEO;
+const query = graphql`
+    {
+        site {
+            siteMetadata {
+                defaultTitle: title
+                defaultDescription: description
+                defaultImage: image
+                url
+                defaultKeywords: keywords
+                defaultSynonyms: synonyms
+            }
+        }
+    }
+`

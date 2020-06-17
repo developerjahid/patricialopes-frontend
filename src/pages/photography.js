@@ -8,7 +8,7 @@ function PhotographyPage() {
         <Layout>
             <SEO
                 keywords={[`gatsby`, `tailwind`, `react`, `tailwindcss`]}
-                title='Contact'
+                title='Photography'
             />
             <section id='contact'>Hi I'm PhotographyPage</section>
         </Layout>

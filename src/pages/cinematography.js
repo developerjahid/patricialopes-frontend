@@ -10,11 +10,11 @@ const Cinematography = ({ data }) => {
     return (
         <Layout>
             <SEO
-                keywords={[`gatsby`, `tailwind`, `react`, `tailwindcss`]}
-                title='Home'
+                keywords={[`cine`, `tailwind`, `react`, `tailwindcss`]}
+                title='Cinematography'
             />
             <section id='Cinematography' className='bg-white py-8'>
-                <div class='container max-w-5xl mx-auto flex items-center flex-wrap pt-4 pb-12'>
+                <div className='container max-w-5xl mx-auto flex items-center flex-wrap pt-4 pb-12'>
                     {items.map(({ node: item }) => (
                         <Cineitem
                             title={item.title}
@@ -22,6 +22,7 @@ const Cinematography = ({ data }) => {
                             altImage={item.featuredImage.alt}
                             category={item.category}
                             url={item.slug.current}
+                            key={item.id}
                         />
                     ))}
                 </div>
@@ -47,6 +48,7 @@ export const query = graphql`
                         }
                     }
                     category
+                    id
                 }
             }
         }

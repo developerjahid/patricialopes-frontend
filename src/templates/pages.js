@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Slideshow from '../components/pages/slideshow'
-import SEO from '../components/seo'
+import HaveSeo from '../components/pages/seo'
 import Layout from '../components/layout/layout'
 import Text from '../components/pages/text'
 import TextImage from '../components/pages/textImage'
@@ -13,6 +13,7 @@ export const query = graphql`
         route: sanityPage(id: { eq: $id }) {
             id
             title
+            _key
             _rawContent(resolveReferences: { maxDepth: 10 })
         }
     }
@@ -49,7 +50,7 @@ const PagesTemplate = ({ data }) => {
 
     return (
         <Layout>
-            <SEO title='test' />
+            <HaveSeo />
             <div className='m-10'>{content}</div>
         </Layout>
     )

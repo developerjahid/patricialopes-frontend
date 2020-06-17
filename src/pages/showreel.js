@@ -6,7 +6,7 @@ const Showreel = () => (
     <Layout>
         <SEO
             keywords={[`gatsby`, `tailwind`, `react`, `tailwindcss`]}
-            title='Home'
+            title='Showreel'
         />
         <section
             id='showreel'
