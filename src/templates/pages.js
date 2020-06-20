@@ -51,7 +51,7 @@ const PagesTemplate = ({ data }) => {
     return (
         <Layout>
             <HaveSeo />
-            <div className='m-10'>{content}</div>
+            <div className=''>{content}</div>
         </Layout>
     )
 }

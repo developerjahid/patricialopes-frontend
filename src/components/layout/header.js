@@ -19,16 +19,17 @@ function Header() {
             render={(data) => {
                 const { items: items } = data.sanityNavigationMenu
                 return (
-                    <header>
-                        <div className='flex flex-wrap items-center justify-between max-w-4xl p-4 sm:p-0 mx-auto md:p-8'>
-                            <nav
+                    <header className="flex flex-wrap justify-between p-4 md:p-8 mx-auto w-full">
+                        <Logo />
+
+                        <nav
                                 className={`${
                                     isExpanded ? `block` : `hidden`
-                                } md:block md:order-last sm:order-first md:flex md:items-center w-full md:w-auto md:bg-white`}
+                                } md:block self-end font-medium uppercase text-sm -mb-2`}
                             >
                                 {items.map((item) => (
                                     <Link
-                                        className='block mt-4 text-black text-center no-underline md:inline-block md:mt-0 md:ml-6'
+                                        className='block md:inline-block pb-1 mt-4 md:mt-0 md:ml-8 text-center no-underline relative tracking-wider'
                                         key={item.name}
                                         to={item.link}
                                     >
@@ -36,11 +37,9 @@ function Header() {
                                     </Link>
                                 ))}
                             </nav>
-                            <Logo />
 
-                            <div className='sm:pt-3 sm:pr-3'>
-                                <button
-                                    className='flex items-center block px-3 py-2 text-black border border-black rounded md:hidden'
+                            <button
+                                    className='block md:hidden'
                                     onClick={() => toggleExpansion(!isExpanded)}
                                 >
                                     <svg
@@ -52,8 +51,7 @@ function Header() {
                                         <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
                                     </svg>
                                 </button>
-                            </div>
-                        </div>
+
                     </header>
                 )
             }}

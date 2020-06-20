@@ -2,10 +2,11 @@ import React from 'react'
 import { Link, StaticQuery } from 'gatsby'
 import {
     FaInstagram,
-    FaFacebookF,
+    FaFacebookSquare,
     FaTwitter,
     FaImdb,
-    FaLinkedinIn,
+    FaLinkedin,
+    FaVimeoV,
 } from 'react-icons/fa'
 
 function Footer() {
@@ -31,39 +32,46 @@ function Footer() {
                     facebook,
                 } = data.sanitySiteSettings
                 return (
-                    <footer className=''>
-                        <div className='max-w-4xl p-3 mx-auto text-sm'>
-                            <div className='flex justify-center'>
-                                <Link to={instagram}>
-                                    <FaInstagram size={20} />
-                                </Link>
-                                <Link to={twitter}>
-                                    <FaTwitter size={20} />
-                                </Link>
-                                <Link to={linkedin}>
-                                    <FaLinkedinIn size={20} />
-                                </Link>
-                                <Link to={imdb}>
-                                    <FaImdb size={20} />
-                                </Link>
-                                <Link to={facebook}>
-                                    <FaFacebookF size={20} />
-                                </Link>
-                            </div>
-                            <div className='flex justify-center'>
-                                <p>
-                                    © 2020. By {` `}
-                                    <Link
-                                        className='font-bold no-underline'
-                                        to='/'
-                                        target='_blank'
-                                        rel='noopener noreferrer'
-                                    >
-                                        Patricia Lopes
+                    <footer className='text-center p-4 md:p-6'>
+                        <nav className='inline-block'>
+                            <ul className='flex justify-center'>
+                                <li className='px-2 hover:grow'>
+                                    <Link to={instagram}>
+                                        <FaInstagram size={20} />
                                     </Link>
+                                </li>
+                                <li className='px-2 hover:grow'>
+                                    <Link to={imdb}>
+                                        <FaImdb size={20} />
+                                    </Link>
+                                </li>
+                                <li className='px-2 hover:grow'>
+                                    <Link to={facebook}>
+                                        <FaVimeoV size={20} />
+                                    </Link>
+                                </li>
+                                <li className='px-2 hover:grow'>
+                                    <Link to={twitter}>
+                                        <FaTwitter size={20} />
+                                    </Link>
+                                </li>
+                                <li className='px-2 hover:grow'>
+                                    <Link to={linkedin}>
+                                        <FaLinkedin size={20} />
+                                    </Link>
+                                </li>
+                                <li className='px-2 hover:grow'>
+                                    <Link to={facebook}>
+                                        <FaFacebookSquare size={20} />
+                                    </Link>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div className='text-xs mt-2'>
+                                <p>
+                                    © 2020. By Patricia Lopes
                                 </p>
                             </div>
-                        </div>
                     </footer>
                 )
             }}

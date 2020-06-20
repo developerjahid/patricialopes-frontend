@@ -3,6 +3,8 @@ import { Link, graphql } from 'gatsby'
 import SEO from '../components/seo'
 import Layout from '../components/layout/layout'
 import { FaAngleLeft } from 'react-icons/fa'
+import Img from 'gatsby-image'
+import {getFluidGatsbyImage, getFixedGatsbyImage} from 'gatsby-source-sanity'
 
 export const query = graphql`
     query cinematoTemplateQuery($id: String!) {
@@ -83,48 +85,50 @@ const ProjectTemplate = ({ data }) => {
         }
     }
 
+    const sanityConfig = {projectId: '7nedemsk', dataset: 'production'}
+
     return (
         <Layout>
             <HaveSeo />
             <section id='cinematography-templete' className='bg-white py-8'>
-                <div className='container max-w-5xl mx-auto flex items-center flex-wrap pt-4 pb-12'>
-                    <Link to='/cinematography'>
+                <div className='max-w-6xl mx-auto flex items-center flex-wrap relative'>
+                    <Link to='/cinematography' className='absolute top-0 -left-3'>
                         <FaAngleLeft size={30} />
                     </Link>
 
                     {images.map((image) => (
-                        <img
-                            src={
-                                image.asset.localFile.childImageSharp.fluid.src
-                            }
+                        <div className='mb-4 cinemato-image'>
+                        <Img
+                            fluid={ getFluidGatsbyImage(image.asset.id, {width: 1200, height: 600}, sanityConfig)}
                             alt={image.alt}
                             key={image.asset.id}
                         />
+                        </div>
                     ))}
-                    <div>
-                        <span>{data.sanityCinematography.title}</span>
+                    <div className='font-thin px-4'>
+                        <span className='font-medium'>{data.sanityCinematography.title}</span>
                         <br />
-                        <span>directors: </span>
+                        <span>Director(s): </span>
                         {directors.map((director) => (
                             <span>{director}</span>
                         ))}
 
                         <br />
-                        <span>dops: </span>
+                        <span>DOP's: </span>
                         {dops.map((dop) => (
                             <span> {dop}</span>
                         ))}
                         <br />
-                        <span>productions: </span>
+                        <span>Production: </span>
                         {productions.map((production) => (
                             <span>{production}</span>
                         ))}
                         <br />
-                        <span>client: </span>
+                        <span>Client: </span>
                         <span>{data.sanityCinematography.client}</span>
                         <span>imdb</span>
                         <br />
-                        <Link to={data.sanityCinematography.imdb}>imdb</Link>
+                        <Link to={data.sanityCinematography.imdb} className='underline hover:no-underline'>more info</Link>
                     </div>
                 </div>
             </section>

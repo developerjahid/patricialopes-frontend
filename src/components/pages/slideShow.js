@@ -1,26 +1,39 @@
-import React from 'react'
-import { Carousel } from 'react-responsive-carousel'
+import React, { Component } from 'react'
+import Slider from "react-slick";
+import Img from 'gatsby-image'
+import {getFluidGatsbyImage, getFixedGatsbyImage} from 'gatsby-source-sanity'
 
-function Slideshow(props) {
-    return (
-        <div className='container max-w-5xl mx-auto flex items-center flex-wrap rounded'>
-            <Carousel
-                infiniteLoop={true}
-                autoPlay={true}
-                stopOnHover={true}
-                swipeable={true}
-                emulateTouch={true}
-                showThumbs={false}
-                showArrows={true}
-                showStatus={false}
-                showIndicators={false}
-            >
-                {props.images.map((image) => (
-                    <img src={image.asset.url} alt={image.alt} />
-                ))}
-            </Carousel>
+const Slideshow = ({ images }) => {
+    const settings = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        fade: true,
+        autoplay: true,
+        pauseOnFocus: false,
+        pauseOnHover: false,
+        dots: true,
+        accessibility: true
+      };
+
+      const sanityConfig = {projectId: '7nedemsk', dataset: 'production'}
+
+      return (
+        <div className=''>
+           <Slider {...settings} className='slider-desktop'>
+            {images.map((image, i) => (
+                <Img key={i} fixed={ getFixedGatsbyImage(image.asset.id, {width: 1900, height: 800}, sanityConfig)} alt={image.alt}/>
+            ))}
+          </Slider>
+
+          <Slider {...settings} className='slider-mobile'>
+            {images.map((image, i) => (
+                <Img key={i} fluid={ getFluidGatsbyImage(image.asset.id, {maxWidth: 1900, maxHeight: 800}, sanityConfig)} alt={image.alt}/>
+            ))}
+          </Slider>
         </div>
-    )
+      );
 }
 
 export default Slideshow

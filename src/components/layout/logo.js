@@ -12,7 +12,7 @@ function Logo() {
                             asset {
                                 localFile {
                                     childImageSharp {
-                                        fluid(maxWidth: 200) {
+                                        fluid(maxWidth: 420) {
                                             src
                                         }
                                     }

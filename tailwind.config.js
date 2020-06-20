@@ -1,6 +1,5 @@
 // See https://tailwindcss.com/docs/configuration for details
 module.exports = {
-    purge: ['./src/**/*.js'],
     theme: {
         extend: {
             spacing: {
@@ -8,7 +7,9 @@ module.exports = {
             },
         },
     },
-    variants: {},
+    variants: {
+        scale: ['hover'],
+      },
     // https://github.com/tailwindcss/custom-forms
     plugins: [require('@tailwindcss/custom-forms')],
 }

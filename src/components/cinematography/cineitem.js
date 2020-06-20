@@ -1,20 +1,23 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import Img from 'gatsby-image'
+import {getFluidGatsbyImage, getFixedGatsbyImage} from 'gatsby-source-sanity'
 
 const Cineitem = (props) => {
+    const sanityConfig = {projectId: '7nedemsk', dataset: 'production'}
+
     return (
-        <div className='w-full md:w-1/3 xl:w-1/3 p-6 flex flex-col'>
-            <Link to={props.url}>
-                <img
-                    className='hover:grow hover:shadow-lg'
-                    src={props.featuredImage}
-                    alt={props.altImage}
+        <div className={"w-full md:w-1/2 lg:w-1/3 pr-1 mb-1 flex flex-col item__grid " + props.category}>
+            <div className='relative'>
+            <Link to={props.url} className='absolute inset-0 z-10'/>
+            <Img className='hover:smaller'
+                 fluid={ getFluidGatsbyImage(props.featuredImage, {maxWidth: 600, maxHeight: 300}, sanityConfig) }
+                 alt={props.altImage}
                 />
-                <div className='pt-3 flex items-center justify-between'>
-                    <h2 className=''>{props.title}</h2>
+                <div className='hover absolute flex items-center justify-center inset-0'>
+                    <h2 className='uppercase font-semibold'>{props.title}</h2>
                 </div>
-                <span className='pt-1 text-gray-900'>{props.category}</span>
-            </Link>
+                </div>
         </div>
     )
 }

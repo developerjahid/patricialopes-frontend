@@ -49,16 +49,11 @@ module.exports = {
         },
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
-
         {
             resolve: `gatsby-plugin-postcss`,
             options: {
                 postCssPlugins: [
-                    require(`tailwindcss`)(tailwindConfig),
-                    require(`autoprefixer`),
-                    ...(process.env.NODE_ENV === `production`
-                        ? [require(`cssnano`)]
-                        : []),
+                    require(`tailwindcss`)(),
                 ],
             },
         },
@@ -72,5 +67,16 @@ module.exports = {
         `gatsby-plugin-robots-txt`,
         `gatsby-source-sanity-transform-images`,
         `gatsby-plugin-offline`,
+        {
+            resolve: `gatsby-plugin-prefetch-google-fonts`,
+            options: {
+              fonts: [
+                {
+                  family: `Poppins`,
+                  variants: [`200`, `400`,`500`, `600`, `700`],
+                },
+              ],
+            },
+          },
     ],
 }
