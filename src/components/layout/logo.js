@@ -10,12 +10,8 @@ function Logo() {
                         logo {
                             alt
                             asset {
-                                localFile {
-                                    childImageSharp {
-                                        fluid(maxWidth: 420) {
-                                            src
-                                        }
-                                    }
+                                fluid(maxWidth: 200) {
+                                    src
                                 }
                             }
                         }
@@ -26,10 +22,7 @@ function Logo() {
                 const { logo } = data.sanitySiteSettings
                 return (
                     <Link className='sm:pt-3 sm:pl-3 md:pt-0 md:pl-0' to='/'>
-                        <img
-                            src={logo.asset.localFile.childImageSharp.fluid.src}
-                            alt={logo.alt}
-                        />
+                        <img src={logo.asset.fluid.src} alt={logo.alt} />
                     </Link>
                 )
             }}

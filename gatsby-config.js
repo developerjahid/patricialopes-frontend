@@ -52,9 +52,7 @@ module.exports = {
         {
             resolve: `gatsby-plugin-postcss`,
             options: {
-                postCssPlugins: [
-                    require(`tailwindcss`)(),
-                ],
+                postCssPlugins: [require(`tailwindcss`)()],
             },
         },
         {
@@ -65,18 +63,17 @@ module.exports = {
         },
         `gatsby-plugin-sitemap`,
         `gatsby-plugin-robots-txt`,
-        `gatsby-source-sanity-transform-images`,
         `gatsby-plugin-offline`,
         {
             resolve: `gatsby-plugin-prefetch-google-fonts`,
             options: {
-              fonts: [
-                {
-                  family: `Poppins`,
-                  variants: [`200`, `400`,`500`, `600`, `700`],
-                },
-              ],
+                fonts: [
+                    {
+                        family: `Poppins`,
+                        variants: [`200`, `400`, `500`, `600`, `700`],
+                    },
+                ],
             },
-          },
+        },
     ],
 }

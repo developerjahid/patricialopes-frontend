@@ -4,7 +4,7 @@ import SEO from '../components/seo'
 import Layout from '../components/layout/layout'
 import { FaAngleLeft } from 'react-icons/fa'
 import Img from 'gatsby-image'
-import {getFluidGatsbyImage, getFixedGatsbyImage} from 'gatsby-source-sanity'
+import { getFluidGatsbyImage, getFixedGatsbyImage } from 'gatsby-source-sanity'
 
 export const query = graphql`
     query cinematoTemplateQuery($id: String!) {
@@ -13,29 +13,14 @@ export const query = graphql`
             title
             featuredImage {
                 asset {
-                    localFile {
-                        childImageSharp {
-                            fluid {
-                                src
-                            }
-                        }
-                    }
+                    url
                 }
                 alt
             }
             fragments {
                 asset {
-                    localFile {
-                        childImageSharp {
-                            fluid {
-                                src
-                            }
-                        }
-                    }
-
                     id
                 }
-
                 alt
             }
             category
@@ -85,28 +70,37 @@ const ProjectTemplate = ({ data }) => {
         }
     }
 
-    const sanityConfig = {projectId: '7nedemsk', dataset: 'production'}
+    const sanityConfig = { projectId: '7nedemsk', dataset: 'production' }
 
     return (
         <Layout>
             <HaveSeo />
             <section id='cinematography-templete' className='bg-white py-8'>
                 <div className='max-w-6xl mx-auto flex items-center flex-wrap relative'>
-                    <Link to='/cinematography' className='absolute top-0 -left-3'>
+                    <Link
+                        to='/cinematography'
+                        className='absolute top-0 -left-3'
+                    >
                         <FaAngleLeft size={30} />
                     </Link>
 
                     {images.map((image) => (
                         <div className='mb-4 cinemato-image'>
-                        <Img
-                            fluid={ getFluidGatsbyImage(image.asset.id, {width: 1200, height: 600}, sanityConfig)}
-                            alt={image.alt}
-                            key={image.asset.id}
-                        />
+                            <Img
+                                fluid={getFluidGatsbyImage(
+                                    image.asset.id,
+                                    { width: 1200, height: 600 },
+                                    sanityConfig
+                                )}
+                                alt={image.alt}
+                                key={image.asset.id}
+                            />
                         </div>
                     ))}
                     <div className='font-thin px-4'>
-                        <span className='font-medium'>{data.sanityCinematography.title}</span>
+                        <span className='font-medium'>
+                            {data.sanityCinematography.title}
+                        </span>
                         <br />
                         <span>Director(s): </span>
                         {directors.map((director) => (
@@ -128,7 +122,12 @@ const ProjectTemplate = ({ data }) => {
                         <span>{data.sanityCinematography.client}</span>
                         <span>imdb</span>
                         <br />
-                        <Link to={data.sanityCinematography.imdb} className='underline hover:no-underline'>more info</Link>
+                        <Link
+                            to={data.sanityCinematography.imdb}
+                            className='underline hover:no-underline'
+                        >
+                            more info
+                        </Link>
                     </div>
                 </div>
             </section>
